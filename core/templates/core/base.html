@@ -1,0 +1,244 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Petshop</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="html5shiv.js"></script>
+    <![endif]-->
+
+
+    <link rel="shortcut icon" href="{% static 'core/images/logo.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'core/images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/custom.css' %}">
+    
+    {% block css%}
+
+    {% endblock %}
+      <!-- src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></!-->
+      <!-- src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></!-->
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="right-phone-box">
+                        <p>Llamanos :- <a href="#"> +569 9345 1234</a></p>
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            <li><a href="{% url 'contact-us' %}"><i class="fas fa-headset"></i> Contactanos</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-around align-items-center align-self-center">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="|nav-link text-light text-uppercase">Bienvenido: {{ user.username }}</a></li>
+                    <li class="nav-item"><a href="{% url 'logout' %}" class="fa fa-user text-light text-uppercase"> Cerrar Sesion</a></li>
+                    {% else %}
+                    <li class=" nav-item "><a href="{% url 'login' %}" class="fa fa-user text-light text-uppercase"> Ingresar</a></li>
+                    {% endif %}
+                    <div class="text-slid-box">
+                        <i class="fab fa-opencart text-slid-box font-weight-bold text-success"> 10% De descuento con la suscripción!</i> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Sobre Nosotros</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Tienda</a></li>
+                        {%  else %}
+                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        {% endif %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact-us' %}">Contactanos</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'seguimiento' %}">Seguimiento</a></li>
+                        {%  else %}
+                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'suscripcion' %}">Suscripción</a></li>
+                        {%  else %}
+                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+               
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- Start Side Menu -->
+        
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    {% block contenido %}
+
+    
+    {% endblock %}
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="footer-top-box">
+							<h3>Horarios de atencion</h3>
+							<ul class="list-time">
+								<li>Lunes - Viernes: 08.00am A 06.00pm</li> <li>Sabado: 10.00am A 06.00pm</li> <li>Domingo: <span>Cerrado</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="footer-top-box">
+							<h3>Correos</h3>
+							<form class="newsletter-box">
+								<div class="form-group">
+									<input class="" type="email" name="Email" placeholder="Direccion E-mail*" />
+									<i class="fa fa-envelope"></i>
+								</div>
+								<button class="btn hvr-hover" type="submit">Enviar</button>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="footer-top-box">
+							<h3>Redes Sociales</h3>
+							<p>Contactanos en nuestras redes sociales, donde actualizamos todos los cambios!.</p>
+							<ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+						</div>
+					</div>
+				</div>
+				<hr>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>Acerca de Petshop</h4>
+                            <p>Somos una tienda de venta de articulos para animales, en su mayoria gatos y perros como collares, identifiacdores y cadenas.</p> 
+							<p>Gran parte de la ganancia la donamos a asosiaciones beneficas que ayuden a los animales mas necesitados. </p> 							
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Informacion</h4>
+                            <ul>
+                                <li><a href="{% url 'about' %}">Acerca de nosotros</a></li>
+                                <li><a href="#">Terminos &amp; Condiciones</a></li>
+                                <li><a href="#">Politica de privacidad</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contactanos</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Dirección: Calle uno <br>Santiago Chile,<br> </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Contacto: <a href="tel: +569 9213 4563">+569 9213 4563</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mail:petshop@gmail.com">petshop@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">Todos los derechos reservados. &copy; 2023 <a href=""></a> 
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+{% block js %}
+
+    <script src="{% static 'core/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'core/js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'core/js/inewsticker.js' %}"></script>
+    <script src="{% static 'core/js/bootsnav.js.' %}"></script>
+    <script src="{% static 'core/js/images-loded.min.js' %}"></script>
+    <script src="{% static 'core/js/isotope.min.js' %}"></script>
+    <script src="{% static 'core/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'core/js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'core/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'core/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'core/js/custom.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'core/js/mensajes.js' %}"></script>
+{% endblock %}

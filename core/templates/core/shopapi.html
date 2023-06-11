@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block contenido %}
+
+    <!-- Start All Title Box -->
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Tienda</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Tienda</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    <!-- End All Title Box -->
+
+    <br><br><br>
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <h1 class="d-flex justify-content-around align-items-center align-self-center text-uppercase text-dark font-weight-bold ">TIENDA DE PRODUCTOS</h1>
+            </div>
+        </div>
+    </div>
+    
+    </div>  
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container ">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-center mx-auto">
+                    <div class="right-product-box">
+                        {% if user.is_authenticated and user.is_superuser %}
+                        <a href="{% url 'add' %}" title="Añadir" class="btn hvr-hover text-light text-center mx-auto"> Añadir producto +</a>
+                        <p> DOLAR: {{ moneda.dolar.valor }}</p>
+                        {% endif %}
+                        <br><br><br>
+                        <div class="product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        {% for aux in listado %}
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">EN VENTA</p>
+                                                    </div>
+                                                    {% if aux.imagen %}
+                                                    <img class="img-fluid" src="{{ aux.imagen }}">
+                                                    {% else %}
+                                                    <img class="img-fluid" src="{% static 'core/images/danger.png' %}" >
+                                                    {% endif %}
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            {% if user.is_authenticated and user.is_superuser %}
+                                                            <li><a href="{% url 'delete' aux.id %}"><i class="fa fa-trash"></i></a></li>
+                                                            <li><a href="{% url 'update' aux.id %}" data-toggle="tooltip" data-placement="right" title="Actualizar" class="fas fa-sync-alt"></a></li>
+                                                            {% endif %}
+
+                                                        </ul>
+                                                        {% if aux.stock >= 1 %}
+                                                        <a class="cart" href="{% url 'cart' %}">AÑADIR AL CARRITO</a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4 class="text-dark text-center"> {{ aux.nombre }}</h4>
+                                                    {% if aux.stock <= 0 %}
+                                                    <h4 class="text-danger text-center">  ¡PRODUCTO SIN STOCK! </h4>
+                                                    {% else %}
+                                                    <h4 class="text-dark text-center"> STOCK: {{ aux.stock }}</h4>
+                                                    {% endif %}
+                                                    <h3 class="text-dark d-flex text-center">{{ aux.descripcion }}</h3>
+                                                    <h5> ${{ aux.precio }} </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                    
+                                    {% include 'core/paginator.html' %}
+                                    {% for aux in personajes %}
+                                        <p>Nombre: {{ aux.name }} - Raza: {{ aux.species }}</p>
+                                        <img src="{{ aux.image }}" alt="">
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+
+    </div>
+    
+    <!-- End Shop Page -->
+
+    <!-- Start Instagram Feed  -->
+    <!-- End Instagram Feed  -->
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'core/js/mensajes.js' %}"></script>
+</script>
+{% endblock %}  
+

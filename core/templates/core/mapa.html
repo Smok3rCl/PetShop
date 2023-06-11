@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br><br><br>
+<div class="d-flex justify-content-around align-items-center align-self-center">
+    <h2 class="text-uppercase text-dark font-weight-bold">Estado del producto</h2>
+</div>
+<br>
+<div class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <form>
+                    
+                    <div class="container mt-3">        
+                        <table class="table table-success">
+                          <thead>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Solicitud ingresada</td>
+                              <td>Preparando producto</td>
+                              <td>En ruta</td>
+                              <td class="table-dark">Entregado</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    <br><br><br>
+                    <!-- Submit button -->
+                    <img src="{% static 'core/images/mapaseguimiento.jpg' %}" class="mx-auto d-block"> 
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <a type="submit" href="{% url 'index' %}" class="btn btn-success ">Volver</a>
+                    
+                    <br>
+                    <br>
+                    <br>
+                
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

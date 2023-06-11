@@ -1,0 +1,126 @@
+{% extends 'core/base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+
+{% block css %} 
+{% endblock %} 
+
+{% block contenido %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Suscripcion</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active"> Suscripcion </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Contact Us  -->
+    <div class="contact-box-main">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="contact-form-right">
+                        <h2>Pagina de suscripcion</h2>
+                        <p>En esta pagina podras visualizar los beneficios de una suscripcion y tambien podras hacerla efectiva.</p>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre completo" required data-error="Porfavor ingresa tu nombre">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Tu e-mail" id="email" class="form-control" name="name" required data-error="Porfavor ingresa tu e-mail">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="subject" name="name" placeholder="Numero de tarjeta" required data-error="Porfavor pon un numero valido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="number" name="name" placeholder="CVV" required data-error="Porfavor pon un CVV valido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" id="date" name="name" placeholder="Fecha de caducidad" required data-error="Porfavor pon una fecha valida">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="number" name="name" placeholder="Monto" required data-error="Porfavor ingresa un monto">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                 <a type="submit" href="{% url 'index' %}" class="btn btn-success ">Comprar suscripcion</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                    
+				<div class="col-lg-4 col-sm-12">
+                    <div class="contact-info-left">
+                        <h2>INFORMACION DE LA SUSCRIPCION</h2>
+                        <p>La suscripcion es una forma de apoyarnos totalmente opcional donde puedes donarnos cantidades voluntarias y a eleccion </p>
+                        <ul>
+                            <li>
+                                <p><i class="fas fa-map-marker-alt"></i>Direccion: Avenida siempre viva 123, <br>Puente alto</p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone-square"></i>Telefono: <a href="tel:+56 9 4848 8484">+56 9 4848 8484</a></p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope"></i>E-mail: <a href="mailto:contactinfo@gmail.com">petshopcont@gmail.com</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Cart -->
+
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if messages %} 
+    {% for aux in messages %} 
+    <script>
+      Swal.fire({
+      title: '¡PAGO REALIZADO!',
+      text: '{{ aux }}',
+      icon: 'success',
+      showConfirmButton: false,
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      html:
+        '<a href="" class="btn btn-primary" id="redirectButton">Listo</a>',
+      didOpen: () => {
+        const redirectButton = document.getElementById("redirectButton");
+        redirectButton.addEventListener("click", redirectToPage);
+      }
+      
+      
+    })
+    </script>
+    {% endfor %} 
+{% endif %}
+    
+{% endblock %}
